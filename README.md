@@ -1,4 +1,4 @@
-# quill-placeholder-module
+# quill-placeholder-module-forked
 Quill module for adding placeholders. [Demo](https://codepen.io/jspaine/pen/MozyNp)
 ## Install
 ```
