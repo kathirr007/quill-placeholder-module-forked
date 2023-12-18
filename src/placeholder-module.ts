@@ -59,7 +59,7 @@ export default function getPlaceholderModule(Quill: QuillTypes.Quill, options?: 
       if (foundObject) {
         return foundObject; // Found in top level
       } else {
-        for (const item of foundObject.options) {
+        for (const item of optionsArray) {
           if(item.options) {
             foundObject = this.findNestedObjectById(item.options, key);
             if (foundObject) return foundObject; // Found in nested array
