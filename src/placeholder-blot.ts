@@ -14,6 +14,8 @@ export default function getPlaceholderBlot(Quill: QuillTypes.Quill): any {
     public domNode: HTMLElement
 
     static create(value: Placeholder) {
+      console.log('value', value);
+      
       let node: HTMLElement = <HTMLElement>super.create(value)
 
       if (value.required) node.setAttribute('data-required', 'true')
