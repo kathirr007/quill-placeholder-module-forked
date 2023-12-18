@@ -54,17 +54,19 @@ export default function getPlaceholderModule(Quill: QuillTypes.Quill, options?: 
       }
     }
 
-    findNestedObjectById = (key:string) => {
-      let foundObject = this.placeholders.filter((pl: Placeholder) => pl.id === key)[0]
+    findNestedObjectById = (optionsArray: Placeholder[], key:string) => {
+      let foundObject = optionsArray.filter((pl: Placeholder) => pl.id === key)[0]
       if (foundObject) {
         return foundObject; // Found in top level
       } else {
-        if (Array.isArray(foundObject.options)) {
-          for (const item of foundObject.options) {
-            foundObject = this.findNestedObjectById(key);
+        for (const item of foundObject.options) {
+          if(item.options) {
+            foundObject = this.findNestedObjectById(item.options, key);
             if (foundObject) return foundObject; // Found in nested array
           }
         }
+        /* if (Array.isArray(foundObject.options)) {
+        } */
       }
       return null; // Not found anywhere
     }
@@ -72,7 +74,7 @@ export default function getPlaceholderModule(Quill: QuillTypes.Quill, options?: 
     toolbarHandler = (identifier: string) => {
       const selection = this.quill.getSelection()
       /* const placeholder = this.placeholders.filter((pl: Placeholder) => pl.id === identifier)[0] */
-      const placeholder = this.findNestedObjectById(identifier)
+      const placeholder = this.findNestedObjectById(this.placeholders, identifier)
       if (!placeholder) throw new Error(`Missing placeholder for ${identifier}`)
 
       this.quill.deleteText(selection.index, selection.length)

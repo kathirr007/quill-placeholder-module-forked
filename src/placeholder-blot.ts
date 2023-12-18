@@ -17,6 +17,10 @@ export default function getPlaceholderBlot(Quill: QuillTypes.Quill): any {
       let node: HTMLElement = <HTMLElement>super.create(value)
 
       if (value.required) node.setAttribute('data-required', 'true')
+      if (value.options) {
+        node.classList.add('ql-picker-item-group')
+        node.setAttribute('data-group', value.label)
+      }
       node.setAttribute('data-id', value.id)
       node.setAttribute('data-label', value.label)
       node.setAttribute('spellcheck', 'false')
