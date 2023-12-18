@@ -1,5 +1,6 @@
 export interface Placeholder {
-  required?: boolean,
   id: string,
-  label: string
+  label: string,
+  required?: boolean,
+  options?: Placeholder[]
 }

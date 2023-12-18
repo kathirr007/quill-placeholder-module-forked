@@ -1,7 +1,7 @@
 import * as QuillTypes from 'quill'
 import {default as ParchmentTypes} from 'parchment'
 
-import {Placeholder} from './placeholder'
+import type {Placeholder} from './placeholder'
 
 export default function getPlaceholderBlot(Quill: QuillTypes.Quill): any {
   const Embed: typeof ParchmentTypes.Embed = Quill.import('blots/embed')
